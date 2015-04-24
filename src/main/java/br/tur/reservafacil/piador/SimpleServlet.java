@@ -24,5 +24,6 @@ public class SimpleServlet extends HttpServlet {
                     throws ServletException, IOException {
         logger.warn("Recebido POST");
         response.getWriter().print("Hello via POST");
+        response.getWriter().flush();
     }
 }

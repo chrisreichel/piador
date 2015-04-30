@@ -38,26 +38,25 @@ public class AppTest {
 	// When
 	final List<Pio> pios = domain.listarPosts("@chrisreichel");
 	// Then
-		assertNotNull(pios);
-	}
+	assertNotNull(pios);
+    }
 
-	@Test(expected = Exception.class)
-	public void deveLancarExceptionSeRepoIndisponivel() {
-		this.domain = new PostagemDomainImpl(null);
-		domain.fazPostagem(new Pio("@nadison", "Hello World. Este é meu pio"));
-	}
+    @Test(expected = Exception.class)
+    public void deveLancarExceptionSeRepoIndisponivel() {
+	this.domain = new PostagemDomainImpl(null);
+	domain.fazPostagem(new Pio("@nadison", "Hello World. Este é meu pio"));
+    }
 
-	@Test(expected = Exception.class)
-	public void deveLancarExceptionSeNaoAdicionarPostagem() {
-		domain.fazPostagem(null);
-	}
+    @Test(expected = Exception.class)
+    public void deveLancarExceptionSeNaoAdicionarPostagem() {
+	domain.fazPostagem(null);
+    }
 
-	@Test
-	public void deveriaListarPost() throws Exception {
-		List<Pio> pios = domain.listarPosts("@nadison");
-		assertNotNull(pios);
-	}
-
-	
+    @Test
+    public void deveriaListarPost()
+		    throws Exception {
+	List<Pio> pios = domain.listarPosts("@nadison");
+	assertNotNull(pios);
+    }
 
 }

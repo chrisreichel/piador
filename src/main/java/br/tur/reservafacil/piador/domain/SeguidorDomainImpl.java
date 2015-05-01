@@ -1,4 +1,4 @@
-package br.tur.reservafacil.piador.postagem;
+package br.tur.reservafacil.piador.domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;

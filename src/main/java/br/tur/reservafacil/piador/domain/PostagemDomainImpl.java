@@ -1,4 +1,4 @@
-package br.tur.reservafacil.piador.postagem;
+package br.tur.reservafacil.piador.domain;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -19,6 +19,7 @@ public class PostagemDomainImpl
 	public PostagemDomainImpl(Map<String, List<Pio>> repo) {
 		this.repoPios = repo;
 	}
+
 
 	@Override public void fazPostagem(Pio pio) {
 		checkNotNull(pio);

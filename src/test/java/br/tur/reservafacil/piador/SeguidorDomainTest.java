@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import br.tur.reservafacil.piador.postagem.SeguidorDomain;
+import br.tur.reservafacil.piador.domain.SeguidorDomain;
+import br.tur.reservafacil.piador.domain.SeguidorDomainImpl;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import br.tur.reservafacil.piador.postagem.SeguidorDomainImpl;
 
 public class SeguidorDomainTest {
 

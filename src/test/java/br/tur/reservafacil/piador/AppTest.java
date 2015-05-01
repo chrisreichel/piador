@@ -1,8 +1,8 @@
 package br.tur.reservafacil.piador;
 
+import br.tur.reservafacil.piador.domain.PostagemDomain;
+import br.tur.reservafacil.piador.domain.PostagemDomainImpl;
 import br.tur.reservafacil.piador.pio.Pio;
-import br.tur.reservafacil.piador.postagem.PostagemDomain;
-import br.tur.reservafacil.piador.postagem.PostagemDomainImpl;
 
 import org.junit.Before;
 import org.junit.Test;

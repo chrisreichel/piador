@@ -10,9 +10,10 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.tur.reservafacil.piador.domain.PostagemDomain;
+import br.tur.reservafacil.piador.domain.SeguidorDomain;
 import br.tur.reservafacil.piador.pio.Pio;
-import br.tur.reservafacil.piador.postagem.PostagemDomain;
-import br.tur.reservafacil.piador.postagem.SeguidorDomain;
+
 import org.junit.Before;
 import org.junit.Test;
 

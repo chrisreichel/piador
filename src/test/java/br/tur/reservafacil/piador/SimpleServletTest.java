@@ -26,7 +26,18 @@ public class SimpleServletTest extends Mockito {
         writer.flush();//pode não ter sido chamado
         //Then
         assertTrue(FileUtils.readFileToString(new File(tmpFileName), "UTF-8")
-                                   .contains("Hello World via GET"));
+                                   .contains("<HTML><BODY>\n"
+                                                             + "<BR><BR>\n"
+                                                             + "info:\n"
+                                                             + "<BR><BR>\n"
+                                                             + "<H2>metod GET</H2>\n"
+                                                             + "<BR><BR>\n"
+                                                             + "SERVER_NAME=null<BR>\n"
+                                                             + "REQUEST_METHOD=null<BR>\n"
+                                                             + "QUERY_STRING=null<BR>\n"
+                                                             + "REMOTE_HOST=null<BR>\n"
+                                                             + "REMOTE_ADDR=null\n"
+                                                             + "</BODY></HTML>\n"));
     }
 
     @Test public void testDoPost() throws Exception {

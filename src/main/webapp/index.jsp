@@ -17,7 +17,7 @@
 <h1>Simple Servlet</h1>
 Abrir <a href="${pageContext.request.contextPath}/SimpleServlet"/>SimpleServlet</a>.
 <hr>
-Nosso Dojo <a href="${pageContext.request.contextPath}/timeline?username=@marcio"/>TimeLineServlet</a>.
+Nosso Dojo <a href="${pageContext.request.contextPath}/timeline?username=@camilla.navarro"/>TimeLineServlet</a>.
 <hr>
 Abrir <a href="${pageContext.request.contextPath}/LoadPageServlet"/>LoadPageServlet</a>.
 </div>

@@ -1,41 +1,29 @@
 package br.tur.reservafacil.piador.domain;
 
+import br.tur.reservafacil.piador.pio.Pio;
+import br.tur.reservafacil.piador.pio.PioRepository;
+
+import java.util.List;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+public class PostagemDomainImpl implements PostagemDomain {
 
-import br.tur.reservafacil.piador.pio.Pio;
+    private final PioRepository pioRepository;
 
-/**
- * Created by enrique on 4/30/15.
- */
-public class PostagemDomainImpl
-		implements PostagemDomain {
+    public PostagemDomainImpl(PioRepository pioRepository) {
+	this.pioRepository = pioRepository;
+    }
 
-	private Map<String, List<Pio>> repoPios;
+    @Override
+    public void fazPostagem(Pio pio) {
+	checkNotNull(pio);
+	pioRepository.save(pio);
+    }
 
-	public PostagemDomainImpl(Map<String, List<Pio>> repo) {
-		this.repoPios = repo;
-	}
-
-
-	@Override public void fazPostagem(Pio pio) {
-		checkNotNull(pio);
-		if (repoPios.containsKey(pio.getUsername())) {
-			repoPios.get(pio.getUsername()).add(pio);
-		} else {
-			List<Pio> pios = new ArrayList<Pio>();
-			pios.add(pio);
-			repoPios.put(pio.getUsername(), pios);
-		}
-	}
-
-	@Override public List<Pio> listarPosts(String username) {
-		return repoPios.get(username);
-	}
-	
-	
+    @Override
+    public List<Pio> listarPosts(String username) {
+	return pioRepository.findByUsername(username);
+    }
 
 }

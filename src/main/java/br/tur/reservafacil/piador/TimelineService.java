@@ -1,16 +1,11 @@
 package br.tur.reservafacil.piador;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import br.tur.reservafacil.piador.domain.PostagemDomain;
-import br.tur.reservafacil.piador.domain.PostagemDomainImpl;
 import br.tur.reservafacil.piador.domain.SeguidorDomain;
-import br.tur.reservafacil.piador.domain.SeguidorDomainImpl;
 import br.tur.reservafacil.piador.pio.Pio;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TimelineService {
 
@@ -18,24 +13,6 @@ public class TimelineService {
     private SeguidorDomain seguidorDomain;
 
     public TimelineService(PostagemDomain postagemDomain, SeguidorDomain seguidorDomain) {
-        this.postagemDomain = postagemDomain;
-        this.seguidorDomain = seguidorDomain;
-    }
-
-    public TimelineService() {
-    	Map<String, List<Pio>> repo = new HashMap<String, List<Pio>>();
-        Map<String, List<String>> repoSeguidores = new HashMap<>();
-
-	    final List<Pio> postagens = new ArrayList<>();
-	    postagens.add(new Pio("@chrisreichel", "Hello world 1"));
-	    postagens.add(new Pio("@chrisreichel", "Hello world 2"));
-	    postagens.add(new Pio("@chrisreichel", "Hello world 3"));
-	    repo.put("@chrisreichel", postagens);
-
-	    repoSeguidores.put("@marcio", Arrays.asList("@chrisreichel"));
-    	PostagemDomain postagemDomain = new PostagemDomainImpl(repo);
-
-    	SeguidorDomain seguidorDomain = new SeguidorDomainImpl(repoSeguidores);
         this.postagemDomain = postagemDomain;
         this.seguidorDomain = seguidorDomain;
     }

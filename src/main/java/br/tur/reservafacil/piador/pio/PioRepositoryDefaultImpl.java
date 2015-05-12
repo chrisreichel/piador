@@ -32,11 +32,11 @@ public class PioRepositoryDefaultImpl implements PioRepository {
 	});
     }
 
-    private static List<String> usuariosPadrao() {
-	return Arrays.asList("@camilla", "@paula", "@danielle", "@aline");
+    private List<String> usuariosPadrao() {
+	return Arrays.asList("@camilla.navarro", "@paula.dias", "@danielle.miranda", "@aline.gallo");
     }
 
-    private static List<String> postsPadrao() {
+    private List<String> postsPadrao() {
 	return Arrays.asList(
 			"The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more",
 			"One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. \"What's happened to me?\" he thought. It wasn't a dream. His room, a proper human",

@@ -1,10 +1,11 @@
-package br.tur.reservafacil.piador.postagem;
+package br.tur.reservafacil.piador.domain;
 
-import br.tur.reservafacil.piador.pio.Pio;
 import br.tur.reservafacil.piador.pio.UsuarioRepository;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
 
 public class SeguidorDomainImpl implements SeguidorDomain {
 
@@ -22,6 +23,7 @@ public class SeguidorDomainImpl implements SeguidorDomain {
 
     @Override
     public List<String> listarSeguidores(String username) {
+	checkNotNull(username);
 	return usuarioRepository.findSeguidoresByUsername(username);
     }
 }

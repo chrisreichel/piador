@@ -1,13 +1,11 @@
-package br.tur.reservafacil.piador.postagem;
-
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+package br.tur.reservafacil.piador.domain;
 
 import br.tur.reservafacil.piador.pio.Pio;
 import br.tur.reservafacil.piador.pio.PioRepository;
+
+import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class PostagemDomainImpl implements PostagemDomain {
 

@@ -1,4 +1,4 @@
-package br.tur.reservafacil.piador.postagem;
+package br.tur.reservafacil.piador.domain;
 
 import br.tur.reservafacil.piador.pio.Pio;
 

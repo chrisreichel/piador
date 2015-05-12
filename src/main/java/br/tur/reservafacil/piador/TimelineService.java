@@ -1,17 +1,11 @@
 package br.tur.reservafacil.piador;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import br.tur.reservafacil.piador.domain.PostagemDomain;
+import br.tur.reservafacil.piador.domain.SeguidorDomain;
 import br.tur.reservafacil.piador.pio.Pio;
-import br.tur.reservafacil.piador.pio.PioRepositoryDefaultImpl;
-import br.tur.reservafacil.piador.postagem.PostagemDomain;
-import br.tur.reservafacil.piador.postagem.PostagemDomainImpl;
-import br.tur.reservafacil.piador.postagem.SeguidorDomain;
-import br.tur.reservafacil.piador.postagem.SeguidorDomainImpl;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TimelineService {
 

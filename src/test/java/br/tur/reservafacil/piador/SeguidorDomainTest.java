@@ -1,19 +1,15 @@
 package br.tur.reservafacil.piador;
 
-import static org.junit.Assert.*;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import br.tur.reservafacil.piador.domain.SeguidorDomain;
+import br.tur.reservafacil.piador.domain.SeguidorDomainImpl;
 import br.tur.reservafacil.piador.pio.UsuarioRepository;
 import br.tur.reservafacil.piador.pio.UsuarioRepositoryDefaultImpl;
-import br.tur.reservafacil.piador.postagem.SeguidorDomain;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.tur.reservafacil.piador.postagem.SeguidorDomainImpl;
+import java.util.List;
+
+import static org.junit.Assert.assertTrue;
 
 public class SeguidorDomainTest {
 
@@ -41,7 +37,7 @@ public class SeguidorDomainTest {
 
     @Test
     public void listarSeguidores() {
-		List<String> listarSeguidores = domain.listarSeguidores("@bruno");
-		assertTrue(listarSeguidores.contains(RONI));
-	}
+	List<String> listarSeguidores = domain.listarSeguidores("@bruno");
+	assertTrue(listarSeguidores.contains(RONI));
+    }
 }

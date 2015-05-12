@@ -1,24 +1,20 @@
 package br.tur.reservafacil.piador;
 
+import br.tur.reservafacil.piador.domain.PostagemDomain;
+import br.tur.reservafacil.piador.domain.PostagemDomainImpl;
 import br.tur.reservafacil.piador.pio.Pio;
 import br.tur.reservafacil.piador.pio.PioRepository;
 import br.tur.reservafacil.piador.pio.PioRepositoryDefaultImpl;
-import br.tur.reservafacil.piador.postagem.PostagemDomain;
-import br.tur.reservafacil.piador.postagem.PostagemDomainImpl;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.Assert.assertNotNull;
 
 public class AppTest {
 
-    public static final String USUARIO_PRE_DEFINIDO = "@danielle";
+    public static final String USUARIO_PRE_DEFINIDO = "@danielle.miranda";
 
     private PostagemDomain domain;
     private PioRepository  pioRepository;

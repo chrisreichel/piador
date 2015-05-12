@@ -68,12 +68,17 @@ public class Pio {
 	return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
 	return "Pio{" +
 			"conteudo='" + conteudo + '\'' +
 			", username='" + username + '\'' +
 			", dataCriacao=" + dataCriacao +
 			'}';
+    }
+
+    public String toHtml() {
+	return "<p>" + this.username + "<pre>" +
+			this.conteudo
+			+ "</pre><em> " + this.dataCriacao + " </em><hr/></p>";
     }
 }

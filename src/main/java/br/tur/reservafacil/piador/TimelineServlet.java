@@ -42,8 +42,10 @@ public class TimelineServlet extends HttpServlet {
         out.println("info:");
         out.println("<BR><BR>");
         out.println("<H2>metod GET</H2>");
-        out.println("<BR><BR>");
-        pios.forEach(out::println);
+        out.println("<BR>PIOS:<BR>");
+        for(Pio pio : pios){
+            out.println(pio.toHtml());
+        }
         out.println("SERVER_NAME="+request.getServerName()+"<BR>");
         out.println("REQUEST_METHOD="+request.getMethod()+"<BR>");
         out.println("QUERY_STRING="+request.getQueryString()+"<BR>");

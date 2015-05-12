@@ -2,43 +2,40 @@ package br.tur.reservafacil.piador.pio;
 
 import java.util.List;
 
-/**
- * Created by enrique on 4/30/15.
- */
 public class Usuario {
 
-	private String username;
-	private List<Pio> conteudo;
-	private List<Usuario> followers;
+    private String        username;
+    private List<Pio>     pios;
+    private List<Usuario> followers;
 
-	public Usuario(String username, List<Pio> conteudo, List<Usuario> followers) {
-		this.username = username;
-		this.conteudo = conteudo;
-		this.followers = followers;
-	}
+    public Usuario(String username, List<Pio> pios, List<Usuario> followers) {
+	this.username = username;
+	this.pios = pios;
+	this.followers = followers;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getUsername() {
+	return username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUsername(String username) {
+	this.username = username;
+    }
 
-	public List<Pio> getConteudo() {
-		return conteudo;
-	}
+    public List<Pio> getPios() {
+	return pios;
+    }
 
-	public void setConteudo(List<Pio> conteudo) {
-		this.conteudo = conteudo;
-	}
+    public void setPios(List<Pio> pios) {
+	this.pios = pios;
+    }
 
-	public List<Usuario> getFollowers() {
-		return followers;
-	}
+    public List<Usuario> getFollowers() {
+	return followers;
+    }
 
-	public void setFollowers(List<Usuario> followers) {
-		this.followers = followers;
-	}
+    public void setFollowers(List<Usuario> followers) {
+	this.followers = followers;
+    }
 
 }

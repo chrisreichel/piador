@@ -1,31 +1,27 @@
 package br.tur.reservafacil.piador.postagem;
 
+import br.tur.reservafacil.piador.pio.Pio;
+import br.tur.reservafacil.piador.pio.UsuarioRepository;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class SeguidorDomainImpl
-		implements SeguidorDomain {
+public class SeguidorDomainImpl implements SeguidorDomain {
 
-	private Map<String, List<String>> repoSeguidores = new HashMap<>();
-	
-	public SeguidorDomainImpl(Map<String, List<String>> repoSeguidores) {
-		super();
-		this.repoSeguidores = repoSeguidores;
-	}
-	
-	@Override public void seguir(String username, String seguidor) {
-		if(!repoSeguidores.containsKey(username)){
-			repoSeguidores.put(username, new ArrayList<String>());
-		}
-		repoSeguidores.get(username).add(seguidor);
-	}
+    private final UsuarioRepository usuarioRepository;
 
-	@Override public List<String> listarSeguidores(String username) {
-		if (username == null || username.isEmpty()) {
-			throw new IllegalArgumentException("Usuario inválido");
-		}
-		return repoSeguidores.get(username);
-	}
+    public SeguidorDomainImpl(UsuarioRepository usuarioRepository) {
+	super();
+	this.usuarioRepository = usuarioRepository;
+    }
+
+    @Override
+    public void seguir(String username, String seguidor) {
+	usuarioRepository.addSeguidor(username, seguidor);
+    }
+
+    @Override
+    public List<String> listarSeguidores(String username) {
+	return usuarioRepository.findSeguidoresByUsername(username);
+    }
 }

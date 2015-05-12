@@ -8,18 +8,18 @@ import static org.junit.Assert.assertEquals;
 
 public class PioTest {
 
-	@Test
-	public void pioNaoDeveTerMaisQueQuantidadeCaracteresPermitido() {
+    @Test
+    public void pioNaoDeveTerMaisQueQuantidadeCaracteresPermitido() {
 
-		StringBuilder stringBuilder = new StringBuilder();
+	StringBuilder stringBuilder = new StringBuilder();
 
-		for (int i = 0; i < 150; i++) {
-			stringBuilder.append("a");
-		}
-		Pio pio = new Pio("@linngallo", stringBuilder.toString());
-
-		assertEquals(pio.getConteudo().length(), 140);
-
+	for (int i = 0; i < 150; i++) {
+	    stringBuilder.append("a");
 	}
+	Pio pio = new Pio("@linngallo", stringBuilder.toString());
+
+	assertEquals(pio.getConteudo().length(), 140);
+
+    }
 
 }

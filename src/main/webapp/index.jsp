@@ -13,7 +13,7 @@
 
 </head>
 <body>
-	<a href="${pageContext.request.contextPath}/timeline?username=@marcio"/>SimpleServlet</a>.
+	<a href="${pageContext.request.contextPath}/timeline?username=@camilla"/>SimpleServlet</a>.
 <div class="container">
 <h1>Simple Servlet</h1>
 Abrir <a href="${pageContext.request.contextPath}/SimpleServlet"/>SimpleServlet</a>.

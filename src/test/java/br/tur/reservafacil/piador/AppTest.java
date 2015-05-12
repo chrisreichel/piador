@@ -1,6 +1,8 @@
 package br.tur.reservafacil.piador;
 
 import br.tur.reservafacil.piador.pio.Pio;
+import br.tur.reservafacil.piador.pio.PioRepository;
+import br.tur.reservafacil.piador.pio.PioRepositoryDefaultImpl;
 import br.tur.reservafacil.piador.postagem.PostagemDomain;
 import br.tur.reservafacil.piador.postagem.PostagemDomainImpl;
 
@@ -14,24 +16,21 @@ import java.util.Map;
 
 import static org.junit.Assert.assertNotNull;
 
-/**
- * Created by enrique on 4/30/15.
- */
 public class AppTest {
 
+    public static final String USUARIO_PRE_DEFINIDO = "@danielle";
+
     private PostagemDomain domain;
-    private Map<String, List<Pio>> repos = new HashMap<String, List<Pio>>();
+    private PioRepository  pioRepository;
 
     @Before
     public void init() {
-	Pio pio = new Pio("@nadison", "Hello World. Este é meu pio");
-	repos.put(pio.getUsername(), Arrays.asList(pio));
-	this.domain = new PostagemDomainImpl(repos);
+	pioRepository = new PioRepositoryDefaultImpl();
+	this.domain = new PostagemDomainImpl(pioRepository);
     }
 
     @Test
-    public void deveriaEnviarUmPost()
-		    throws Exception {
+    public void deveriaEnviarUmPost() throws Exception {
 	// Given
 	Pio pio = new Pio("@chrisreichel", "Hello World. Este é meu pio");
 	domain.fazPostagem(pio);
@@ -53,9 +52,8 @@ public class AppTest {
     }
 
     @Test
-    public void deveriaListarPost()
-		    throws Exception {
-	List<Pio> pios = domain.listarPosts("@nadison");
+    public void deveriaListarPost() throws Exception {
+	List<Pio> pios = domain.listarPosts(USUARIO_PRE_DEFINIDO);
 	assertNotNull(pios);
     }
 

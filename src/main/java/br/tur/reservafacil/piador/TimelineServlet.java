@@ -1,5 +1,9 @@
 package br.tur.reservafacil.piador;
 
+import br.tur.reservafacil.piador.pio.PioRepositoryDefaultImpl;
+import br.tur.reservafacil.piador.pio.UsuarioRepositoryDefaultImpl;
+import br.tur.reservafacil.piador.postagem.PostagemDomainImpl;
+import br.tur.reservafacil.piador.postagem.SeguidorDomainImpl;
 import org.apache.log4j.Logger;
 
 import br.tur.reservafacil.piador.pio.Pio;
@@ -25,8 +29,11 @@ public class TimelineServlet extends HttpServlet {
 
     	String usuario = request.getParameter("username");
 
-    	TimelineService service = new TimelineService();
-    	List<Pio> pios = service.montaTimeline(usuario);
+	PostagemDomainImpl postagemDomain = new PostagemDomainImpl(new PioRepositoryDefaultImpl());
+	SeguidorDomainImpl seguidorDomain = new SeguidorDomainImpl(new UsuarioRepositoryDefaultImpl());
+
+	TimelineService service = new TimelineService(postagemDomain, seguidorDomain);
+	List<Pio> pios = service.montaTimeline(usuario);
 
         logger.warn("Recebido GET");
         final PrintWriter out = response.getWriter();

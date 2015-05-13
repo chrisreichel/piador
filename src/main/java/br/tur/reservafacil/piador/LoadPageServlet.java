@@ -12,10 +12,10 @@ import java.io.IOException;
 @WebServlet("/LoadPageServlet")
 public class LoadPageServlet extends HttpServlet {
 
-    private static Logger logger = Logger.getLogger(LoadPageServlet.class);
+    private static final Logger LOGGER = Logger.getLogger(LoadPageServlet.class);
 
     @Override protected void doGet(HttpServletRequest request, HttpServletResponse response)
-		    throws ServletException, IOException {
+                    throws ServletException, IOException {
 
         request.getRequestDispatcher("/hello.jsp").include(request, response);
     }

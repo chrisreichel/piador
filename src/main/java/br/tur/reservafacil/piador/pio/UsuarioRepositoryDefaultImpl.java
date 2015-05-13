@@ -30,9 +30,20 @@ public class UsuarioRepositoryDefaultImpl implements UsuarioRepository {
     }
 
     @Override
-    public void save(Usuario usuario) {
+    public void insert(Usuario usuario) {
 	checkNotNull(usuario);
+        if(usuariosRepos.contains(usuario)){
+	    throw new IllegalArgumentException("Usuario ja existe");
+        }
 	usuariosRepos.add(usuario);
+    }
+
+    @Override public void update(Usuario usuario) {
+        checkNotNull(usuario);
+        if(!usuariosRepos.contains(usuario)){
+            throw new IllegalArgumentException("Usuario nao existe");
+        }
+        usuariosRepos.add(usuario);
     }
 
     @Override
@@ -40,6 +51,11 @@ public class UsuarioRepositoryDefaultImpl implements UsuarioRepository {
 	return usuariosRepos.stream()
 			.filter(user -> comparePasswordAuthentication(user.getAuthentication(), passwordAuthentication))
 			.findFirst();
+    }
+
+    @Override public Optional<Usuario> findUsuarioByLogin(String userName) {
+        return usuariosRepos.stream()
+                        .filter(user -> (user.getAuthentication().getUserName().equalsIgnoreCase(userName))).findFirst();
     }
 
     private boolean comparePasswordAuthentication(PasswordAuthentication authA, PasswordAuthentication authB) {
@@ -56,19 +72,17 @@ public class UsuarioRepositoryDefaultImpl implements UsuarioRepository {
     private void initUsuarios() {
 	usuariosPadrao().stream()
 			.map(this::createUsuario)
-			.forEach(this::save);
+			.forEach(this::insert);
     }
 
-    private Usuario createUsuario(String template) {
+    private Usuario createUsuario(String user) {
+        final String template = user.replace("@", "");
 	PasswordAuthentication passwordAuthentication = new PasswordAuthentication(template, "123".toCharArray());
-
-	String usuarioLimpo = template.replaceAll("@", "");
-	Profile profile = new Profile();
-	profile.setEmail(usuarioLimpo+"@gmail.com");
-	profile.setNome(usuarioLimpo.split("[.]")[0]);
-	profile.setSobrenome(usuarioLimpo.split("[.]")[1]);
-
-	return new Usuario(passwordAuthentication, new ArrayList<>(), new ArrayList<>(), profile);
+	Usuario u = new Usuario(passwordAuthentication, new ArrayList<>(), new ArrayList<>());
+        u.setEmail(template + "@gmail.com");
+        u.setNome(template.split("[.]")[0]);
+        u.setSobrenome(template.split("[.]")[1]);
+        return u;
     }
 
     private void initSeguidores() {

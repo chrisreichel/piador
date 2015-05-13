@@ -12,8 +12,8 @@ import java.net.PasswordAuthentication;
  */
 public interface UsuarioDomain {
 
-    public void novoUsuario(Usuario usuario);
+    void novoUsuario(Usuario usuario);
 
-    public Usuario login(PasswordAuthentication usuario);
+    Usuario login(PasswordAuthentication usuario);
 
 }

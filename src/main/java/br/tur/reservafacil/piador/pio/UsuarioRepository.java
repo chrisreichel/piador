@@ -10,7 +10,11 @@ public interface UsuarioRepository {
 
     List<String> findSeguidoresByUsername(String username);
 
-    void save(Usuario usuario);
+    void insert(Usuario usuario);
+
+    void update(Usuario usuario);
 
     Optional<Usuario> findUsuarioByPasswordAuthentication(PasswordAuthentication passwordAuthentication);
+
+    Optional<Usuario> findUsuarioByLogin(String userName);
 }

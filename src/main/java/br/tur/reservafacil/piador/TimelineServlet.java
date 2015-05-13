@@ -22,21 +22,20 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/timeline")
 public class TimelineServlet extends HttpServlet {
 
-    private static Logger logger = Logger.getLogger(TimelineServlet.class);
-    
+    private static final Logger LOGGER = Logger.getLogger(TimelineServlet.class);
 
     @Override protected void doGet(HttpServletRequest request, HttpServletResponse response)
                     throws ServletException, IOException {
 
-    	String usuario = request.getParameter("username");
+        String usuario = request.getParameter("username");
 
-	PostagemDomainImpl postagemDomain = new PostagemDomainImpl(new PioRepositoryDefaultImpl());
-	SeguidorDomainImpl seguidorDomain = new SeguidorDomainImpl(new UsuarioRepositoryDefaultImpl());
+        PostagemDomainImpl postagemDomain = new PostagemDomainImpl(new PioRepositoryDefaultImpl());
+        SeguidorDomainImpl seguidorDomain = new SeguidorDomainImpl(new UsuarioRepositoryDefaultImpl());
 
-	TimelineService service = new TimelineService(postagemDomain, seguidorDomain);
-	List<Pio> pios = service.montaTimeline(usuario);
+        TimelineService service = new TimelineService(postagemDomain, seguidorDomain);
+        List<Pio> pios = service.montaTimeline(usuario);
 
-        logger.warn("Recebido GET");
+        LOGGER.warn("Recebido GET");
         final PrintWriter out = response.getWriter();
         out.println("<HTML><BODY>");
         out.println("<BR><BR>");
@@ -57,11 +56,11 @@ public class TimelineServlet extends HttpServlet {
 
     @Override protected void doPost(HttpServletRequest request, HttpServletResponse response)
                     throws ServletException, IOException {
-        logger.warn("Recebido POST");
+        LOGGER.warn("Recebido POST");
         final String username = request.getParameter("username");
         final String password = request.getParameter("password");
-        logger.warn("Login: " + username);
-        logger.warn("Senha: " + password);
+        LOGGER.warn("Login: " + username);
+        LOGGER.warn("Senha: " + password);
         response.getWriter().println("Hello via POST");
         response.getWriter().println("Login: " + username);
         response.getWriter().println("Senha: " + password);

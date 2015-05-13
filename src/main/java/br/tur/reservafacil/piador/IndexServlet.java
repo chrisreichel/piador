@@ -16,17 +16,16 @@ import java.io.IOException;
 @WebServlet("/index")
 public class IndexServlet extends HttpServlet{
 
-    private static Logger logger = Logger.getLogger(IndexServlet.class);
+    private static final Logger LOGGER = Logger.getLogger(IndexServlet.class);
 
     @Override protected void doGet(HttpServletRequest request, HttpServletResponse response)
-		    throws ServletException, IOException {
+                    throws ServletException, IOException {
 
         final HttpSession session = request.getSession(false);
-        logger.info("Sessao: " + session);
-        if(session != null && session.getAttribute("USUARIO") != null) {
+        LOGGER.info("Sessao: " + session);
+        if (session != null && session.getAttribute("USUARIO") != null) {
             request.getRequestDispatcher("/timeline").include(request, response);
-        }
-        else{
+        } else {
             request.getRequestDispatcher("notloged.jsp").include(request, response);
         }
     }

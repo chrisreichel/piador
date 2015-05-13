@@ -2,6 +2,7 @@ package br.tur.reservafacil.piador;
 
 import br.tur.reservafacil.piador.domain.PostagemDomain;
 import br.tur.reservafacil.piador.domain.SeguidorDomain;
+import br.tur.reservafacil.piador.domain.TimelineService;
 import br.tur.reservafacil.piador.pio.Pio;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,15 +21,14 @@ public class TImelineTest {
     private SeguidorDomain  seguidorDomain;
     private PostagemDomain  postagemDomain;
 
-    @Before
-    public void init() throws Exception {
+    @Before public void init()
+		    throws Exception {
 	postagemDomain = mock(PostagemDomain.class);
 	seguidorDomain = mock(SeguidorDomain.class);
 	timelineService = new TimelineService(postagemDomain, seguidorDomain);
     }
 
-    @Test
-    public void deveExibirATimeline() {
+    @Test public void deveExibirATimeline() {
 	final List<Pio> postagens = new ArrayList<>();
 	postagens.add(new Pio("@chrisreichel", "Hello world 1"));
 	postagens.add(new Pio("@chrisreichel", "Hello world 2"));

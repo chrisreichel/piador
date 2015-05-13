@@ -2,6 +2,7 @@ package br.tur.reservafacil.piador;
 
 import br.tur.reservafacil.piador.domain.PostagemDomainImpl;
 import br.tur.reservafacil.piador.domain.SeguidorDomainImpl;
+import br.tur.reservafacil.piador.domain.TimelineService;
 import br.tur.reservafacil.piador.pio.PioRepositoryDefaultImpl;
 import br.tur.reservafacil.piador.pio.UsuarioRepositoryDefaultImpl;
 import org.apache.log4j.Logger;

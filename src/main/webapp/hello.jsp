@@ -1,13 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Hello page</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap/css/bootstrap-theme.min.css">
-    <script src="${pageContext.request.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
-</head>
-<body>
-<div class="container">
+<%@page contentType="text/html" pageEncoding="UTF-8" session="false"%>
+<jsp:include page="includes/header.jsp" />
     <H1>Hello</H1>
     <hr/>
     <form class="form-inline" method="post" action="SimpleServlet">
@@ -26,6 +18,4 @@
       </div>
       <button type="submit" class="btn btn-default">Sign in</button>
     </form>
-</div>
-</body>
-</html>
+<jsp:include page="includes/footer.jsp" />

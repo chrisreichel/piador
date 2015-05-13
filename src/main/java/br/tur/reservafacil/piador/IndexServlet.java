@@ -1,5 +1,6 @@
 package br.tur.reservafacil.piador;
 
+import br.tur.reservafacil.piador.pio.Usuario;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -7,8 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Created by christian on 13/05/15.
@@ -21,9 +22,9 @@ public class IndexServlet extends HttpServlet{
     @Override protected void doGet(HttpServletRequest request, HttpServletResponse response)
                     throws ServletException, IOException {
 
-        final HttpSession session = request.getSession(false);
-        LOGGER.info("Sessao: " + session);
-        if (session != null && session.getAttribute("USUARIO") != null) {
+        final Optional<Usuario> usuario = HttpServletRequestUtils.getUsuario(request);
+        if (usuario.isPresent()) {
+            LOGGER.debug("Welcome back: " + usuario.get().getAuthentication().getUserName());
             request.getRequestDispatcher("/timeline").include(request, response);
         } else {
             request.getRequestDispatcher("notloged.jsp").include(request, response);

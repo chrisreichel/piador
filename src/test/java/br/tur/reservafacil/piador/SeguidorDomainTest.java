@@ -27,7 +27,7 @@ public class SeguidorDomainTest {
 
     @Test
     public void segueAlguem() {
-	/*Assert.assertTrue("NÃO CONSEGUIMOS SEGUIR FULANO", repoSeguidores.get("@bruno").contains(RONI));*/
+	/*Assert.assertTrue("NÃO CONSEGUIMOS SEGUIR FULANO", repoSeguidores.getUsuario("@bruno").contains(RONI));*/
     }
 
     @Test(expected = Exception.class)

@@ -32,7 +32,7 @@ public class PioRepositoryDefaultImpl implements PioRepository {
     }
 
     private List<String> usuariosPadrao() {
-	return Arrays.asList("@camilla.navarro", "@paula.dias", "@danielle.miranda", "@aline.gallo");
+	return Arrays.asList("camilla.navarro", "paula.dias", "danielle.miranda", "aline.gallo");
     }
 
     private List<String> postsPadrao() {

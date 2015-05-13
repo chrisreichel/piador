@@ -5,6 +5,7 @@ package br.tur.reservafacil.piador.domain;
 
 
 import java.net.PasswordAuthentication;
+import java.util.Collection;
 import java.util.Optional;
 
 import br.tur.reservafacil.piador.domain.exceptions.UsuarioJaExisteException;
@@ -45,6 +46,10 @@ public class UsuarioDomainImpl implements UsuarioDomain {
     public Usuario login(PasswordAuthentication authentication) {
 	checkNotNull(authentication);
 	return usuarioRepository.findUsuarioByPasswordAuthentication(authentication).orElseThrow(() -> new UsuarioNotFoundException());
+    }
+
+    @Override public Collection<Usuario> listaTodosUsuarios() {
+        return usuarioRepository.findAllUsuarios();
     }
 
 }

@@ -75,10 +75,4 @@ public class Pio {
 			", dataCriacao=" + dataCriacao +
 			'}';
     }
-
-    public String toHtml() {
-	return "<p>" + this.username + "<pre>" +
-			this.conteudo
-			+ "</pre><em> " + this.dataCriacao + " </em><hr/></p>";
-    }
 }

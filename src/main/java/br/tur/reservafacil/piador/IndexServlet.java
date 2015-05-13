@@ -25,7 +25,7 @@ public class IndexServlet extends HttpServlet{
         final Optional<Usuario> usuario = HttpServletRequestUtils.getUsuario(request);
         if (usuario.isPresent()) {
             LOGGER.debug("Welcome back: " + usuario.get().getAuthentication().getUserName());
-            request.getRequestDispatcher("/timeline").include(request, response);
+            new TimelineServlet().doGet(request, response);
         } else {
             request.getRequestDispatcher("notloged.jsp").include(request, response);
         }

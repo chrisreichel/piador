@@ -52,4 +52,8 @@ public class UsuarioRepositoryDuble
     @Override public Optional<Usuario> findUsuarioByLogin(String userName) {
         return db.stream().filter(user -> (user.getAuthentication().getUserName().equalsIgnoreCase(userName))).findFirst();
     }
+
+    @Override public Collection<Usuario> findAllUsuarios() {
+        throw new NotImplementedException("no yet");
+    }
 }

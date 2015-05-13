@@ -33,9 +33,12 @@ public class TimelineServlet extends HttpServlet {
         }
 
         final String timelineDoUsuario = obterUsuario(usuarioLogado.get(), request);
+        if(usuarioLogado.get().getAuthentication().getUserName().equalsIgnoreCase(timelineDoUsuario)){
+            request.setAttribute("self", true);
+        }
         final TimelineService service = getTimelineService();
         final List<Pio> pios = service.montaTimeline(timelineDoUsuario);
-
+        request.setAttribute("users", getUsuarioDomain().listaTodosUsuarios());
         request.setAttribute("pios", pios);
 
         request.getRequestDispatcher("timeline.jsp").include(request, response);
@@ -47,6 +50,10 @@ public class TimelineServlet extends HttpServlet {
             return username;
         }
         return usuario.getAuthentication().getUserName();
+    }
+
+    UsuarioDomain getUsuarioDomain(){
+        return new UsuarioDomainImpl();
     }
 
     PostagemDomain getPostagemDomain(){

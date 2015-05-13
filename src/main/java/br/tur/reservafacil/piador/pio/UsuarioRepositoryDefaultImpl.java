@@ -23,7 +23,8 @@ public class UsuarioRepositoryDefaultImpl implements UsuarioRepository {
 
     @Override
     public List<String> findSeguidoresByUsername(String username) {
-	return seguidoresRepos.get(username);
+	final List<String> quemUserSegue = seguidoresRepos.get(username);
+        return (quemUserSegue != null) ? quemUserSegue : Collections.emptyList();
     }
 
     @Override
@@ -53,6 +54,10 @@ public class UsuarioRepositoryDefaultImpl implements UsuarioRepository {
     @Override public Optional<Usuario> findUsuarioByLogin(String userName) {
         return usuariosRepos.stream()
                         .filter(user -> (user.getAuthentication().getUserName().equalsIgnoreCase(userName))).findFirst();
+    }
+
+    @Override public Collection<Usuario> findAllUsuarios() {
+        return usuariosRepos;
     }
 
     private boolean comparePasswordAuthentication(PasswordAuthentication authA, PasswordAuthentication authB) {
@@ -92,6 +97,6 @@ public class UsuarioRepositoryDefaultImpl implements UsuarioRepository {
     }
 
     public List<String> usuariosPadrao() {
-	return Arrays.asList("@camilla.navarro", "@paula.dias", "@danielle.miranda", "@aline.gallo");
+	return Arrays.asList("camilla.navarro", "paula.dias", "danielle.miranda", "aline.gallo");
     }
 }

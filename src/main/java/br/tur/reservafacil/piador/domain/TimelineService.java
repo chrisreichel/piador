@@ -20,6 +20,7 @@ public class TimelineService {
     public List<Pio> montaTimeline(String usuario) {
     	List<Pio> resultado = new ArrayList<>();
     	List<String> seguidores = seguidorDomain.listarSeguidores(usuario);
+        resultado.addAll(postagemDomain.listarPosts(usuario));
     	for (String seguidor: seguidores) {
     		resultado.addAll(postagemDomain.listarPosts(seguidor));
     	}

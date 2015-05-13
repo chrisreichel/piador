@@ -11,10 +11,7 @@ public class UsuarioRepositoryDefaultImpl implements UsuarioRepository {
     private static Map<String, List<String>> seguidoresRepos = new HashMap<>();
     private static Set<Usuario>              usuariosRepos   = new HashSet<>();
 
-    public UsuarioRepositoryDefaultImpl() {
-	initSeguidores();
-	initUsuarios();
-    }
+    public UsuarioRepositoryDefaultImpl() {}
 
     @Override
     public void addSeguidor(String username, String seguidor) {
@@ -69,7 +66,7 @@ public class UsuarioRepositoryDefaultImpl implements UsuarioRepository {
 	return authA.getUserName().equals(authB.getUserName()) && Arrays.equals(authA.getPassword(), authB.getPassword());
     }
 
-    private void initUsuarios() {
+    public void initUsuarios() {
 	usuariosPadrao().stream()
 			.map(this::createUsuario)
 			.forEach(this::insert);
@@ -85,7 +82,7 @@ public class UsuarioRepositoryDefaultImpl implements UsuarioRepository {
         return u;
     }
 
-    private void initSeguidores() {
+    public void initSeguidores() {
 	usuariosPadrao().stream()
 			.forEach(user -> {
 			    seguidoresRepos.put(user, usuariosPadrao().stream()
@@ -94,7 +91,7 @@ public class UsuarioRepositoryDefaultImpl implements UsuarioRepository {
 			});
     }
 
-    private List<String> usuariosPadrao() {
+    public List<String> usuariosPadrao() {
 	return Arrays.asList("@camilla.navarro", "@paula.dias", "@danielle.miranda", "@aline.gallo");
     }
 }

@@ -48,8 +48,8 @@ public class HttpServletRequestUtils {
 
     public static Usuario toUsuario(HttpServletRequest request) {
         final String username = (String) request.getParameter(REQ_USERNAME_ATTR);
-        final String senha = (String) request.getParameter(REQ_PASSWORD_ATTR);
         final String email = (String) request.getParameter(REQ_EMAIL_ATTR);
+        final String senha = (String) request.getParameter(REQ_PASSWORD_ATTR);
         return new Usuario(username, senha, email);
     }
 }

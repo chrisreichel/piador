@@ -43,7 +43,14 @@ public class UsuarioServlet extends HttpServlet {
             LOGGER.info("Tentativa de criacao de Usuario invalido: " + e.getMessage());
             HttpServletRequestUtils.adicionaErro("Usuario invalido (faltou login, email ou senha)", request);
         }
-        response.sendRedirect("index");
+        request.setAttribute("sucesso", "Usuário criado. Por favor efetue o login.");
+        new IndexServlet().doGet(request, response); //FEIO
+        //FEIO
+        //FEIOOOOO
+
+        //FEEEEEEIIIIIIIIIIIIIOOOOOOOOOO
+
+        //response.sendRedirect("index"); <-- não dá forward nos atrributos
     }
 
     UsuarioDomain getUsuarioDomain(){

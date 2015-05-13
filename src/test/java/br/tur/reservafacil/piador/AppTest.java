@@ -21,7 +21,8 @@ public class AppTest {
 
     @Before
     public void init() {
-	pioRepository = new PioRepositoryDefaultImpl();
+        pioRepository = new PioRepositoryDefaultImpl();
+        ((PioRepositoryDefaultImpl) pioRepository).initRepos();
 	this.domain = new PostagemDomainImpl(pioRepository);
     }
 

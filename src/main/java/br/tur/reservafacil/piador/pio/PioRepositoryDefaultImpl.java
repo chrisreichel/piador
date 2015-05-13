@@ -7,7 +7,6 @@ public class PioRepositoryDefaultImpl implements PioRepository {
     private final static Map<String, List<Pio>> repos = new HashMap<>();
 
     public PioRepositoryDefaultImpl() {
-	initRepos();
     }
 
     @Override
@@ -23,7 +22,7 @@ public class PioRepositoryDefaultImpl implements PioRepository {
 	return repos.get(username);
     }
 
-    private void initRepos() {
+    public void initRepos() {
 	usuariosPadrao().stream()
 			.forEach(user -> {
 		postsPadrao().stream()

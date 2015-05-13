@@ -36,7 +36,13 @@ public class LoginServlet extends HttpServlet {
             LOGGER.info("Usuario " + auth.getUserName() + " nao pode ser authenticado (não existe/senha errada)");
         }
         //decide o que fazer em outro servlet
-        response.sendRedirect("index");
+        new IndexServlet().doGet(request, response); //FEIO
+        //FEIO
+        //FEIOOOOO
+
+        //FEEEEEEIIIIIIIIIIIIIOOOOOOOOOO
+
+        //response.sendRedirect("index"); <-- não dá forward nos atrributos
     }
 
     UsuarioDomain getUsuarioDomain(){

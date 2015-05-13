@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <jsp:include page="includes/header.jsp" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <hr>
@@ -11,6 +12,17 @@
         </div>
     </div>
 </div>
+</c:if>
+
+<c:if test="${sucesso != null}">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                ${sucesso}
+            </div>
+        </div>
+    </div>
 </c:if>
 
 <div class="row">
@@ -40,11 +52,11 @@
             </div>
             <div class="form-group">
                 <label class="sr-only" for="new.email">E-mail</label>
-                <input name="senha" type="email" class="form-control" id="new.email" placeholder="Seu e-mail">
+                <input name="email" type="email" class="form-control" id="new.email" placeholder="Seu e-mail">
             </div>
             <div class="form-group">
                 <label class="sr-only" for="new.senha">Senha</label>
-                <input name="email" type="password" class="form-control" id="new.senha" placeholder="Senha">
+                <input name="senha" type="password" class="form-control" id="new.senha" placeholder="Senha">
             </div>
             <button type="submit" class="btn btn-default">Criar usuário</button>
         </form>

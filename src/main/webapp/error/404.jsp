@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             background-color:#FFFFFF;
-            background-image: url("../static/imagens/static.gif");
+            background-image: url("/piador/static/imagens/static.gif");
         }
         h1{
             background-color: black;

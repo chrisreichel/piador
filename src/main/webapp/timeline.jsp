@@ -44,7 +44,7 @@
                     </a>
                 </div>
                 <p>
-                    <button type="button" class="btn btn-primary btn-sm">Seguir</button>
+                    <a href="seguir?user=<c:out value="${user.authentication.userName}"/>" class="btn btn-primary btn-sm">Seguir</a>
                 </p>
                 <hr/>
             </c:forEach>

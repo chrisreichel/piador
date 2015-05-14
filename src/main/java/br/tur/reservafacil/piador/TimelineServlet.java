@@ -34,7 +34,7 @@ public class TimelineServlet extends HttpServlet {
 
         final String timelineDoUsuario = obterUsuario(usuarioLogado.get(), request);
         if(usuarioLogado.get().getAuthentication().getUserName().equalsIgnoreCase(timelineDoUsuario)){
-            request.setAttribute("self", true);
+            request.setAttribute("self", usuarioLogado.get().getAuthentication().getUserName());
         }
         final TimelineService service = getTimelineService();
         final List<Pio> pios = service.montaTimeline(timelineDoUsuario);

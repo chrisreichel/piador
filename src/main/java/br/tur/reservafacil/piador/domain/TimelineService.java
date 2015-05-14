@@ -1,10 +1,7 @@
 package br.tur.reservafacil.piador.domain;
 
-import br.tur.reservafacil.piador.domain.PostagemDomain;
-import br.tur.reservafacil.piador.domain.SeguidorDomain;
 import br.tur.reservafacil.piador.pio.Pio;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

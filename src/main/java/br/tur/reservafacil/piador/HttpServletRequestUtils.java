@@ -7,8 +7,6 @@ import javax.servlet.http.HttpSession;
 import java.net.PasswordAuthentication;
 import java.util.Optional;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 /**
  * Created by christian on 13/05/15.
  */

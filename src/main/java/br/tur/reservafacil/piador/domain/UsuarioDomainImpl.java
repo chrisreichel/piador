@@ -3,16 +3,15 @@
  */
 package br.tur.reservafacil.piador.domain;
 
-
-import java.net.PasswordAuthentication;
-import java.util.Collection;
-import java.util.Optional;
-
 import br.tur.reservafacil.piador.domain.exceptions.UsuarioJaExisteException;
 import br.tur.reservafacil.piador.domain.exceptions.UsuarioNotFoundException;
 import br.tur.reservafacil.piador.pio.Usuario;
 import br.tur.reservafacil.piador.pio.UsuarioRepository;
 import br.tur.reservafacil.piador.pio.UsuarioRepositoryDefaultImpl;
+
+import java.net.PasswordAuthentication;
+import java.util.Collection;
+import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

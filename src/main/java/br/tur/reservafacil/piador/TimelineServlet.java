@@ -1,23 +1,20 @@
 package br.tur.reservafacil.piador;
 
 import br.tur.reservafacil.piador.domain.*;
+import br.tur.reservafacil.piador.pio.Pio;
 import br.tur.reservafacil.piador.pio.PioRepositoryDefaultImpl;
 import br.tur.reservafacil.piador.pio.Usuario;
 import br.tur.reservafacil.piador.pio.UsuarioRepositoryDefaultImpl;
 import org.apache.log4j.Logger;
-
-import br.tur.reservafacil.piador.pio.Pio;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
 @WebServlet("/timeline")
 public class TimelineServlet extends HttpServlet {

@@ -6,7 +6,13 @@ import br.tur.reservafacil.piador.pio.PioRepositoryDefaultImpl;
 import br.tur.reservafacil.piador.pio.Usuario;
 import br.tur.reservafacil.piador.pio.UsuarioRepositoryDefaultImpl;
 import org.apache.log4j.Logger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,13 +30,16 @@ public class TimelineServlet extends HttpServlet {
     @Override protected void doGet(HttpServletRequest request, HttpServletResponse response)
                     throws ServletException, IOException {
 
+        final WebApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
+        final JdbcTemplate jdbcTemplate = (JdbcTemplate)ctx.getBean("jdbcTemplate");
+
         final Optional<Usuario> usuarioLogado = HttpServletRequestUtils.getUsuario(request);
-        if(!usuarioLogado.isPresent()){
+        if (!usuarioLogado.isPresent()) {
             new ServletException("Usuário não está logado");
         }
 
         final String timelineDoUsuario = obterUsuario(usuarioLogado.get(), request);
-        if(usuarioLogado.get().getAuthentication().getUserName().equalsIgnoreCase(timelineDoUsuario)){
+        if (usuarioLogado.get().getAuthentication().getUserName().equalsIgnoreCase(timelineDoUsuario)) {
             request.setAttribute("self", usuarioLogado.get().getAuthentication().getUserName());
         }
         final TimelineService service = getTimelineService();

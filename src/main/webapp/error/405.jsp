@@ -1,4 +1,4 @@
-<%@ page isErrorPage="true" import="java.io.*" contentType="text/html" session="false"%>
+<%@ page isErrorPage="true" import="java.io.*" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 

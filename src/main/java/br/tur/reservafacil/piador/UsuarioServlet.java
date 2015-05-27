@@ -6,6 +6,8 @@ import br.tur.reservafacil.piador.domain.exceptions.UsuarioJaExisteException;
 import br.tur.reservafacil.piador.pio.Usuario;
 import org.apache.log4j.Logger;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +36,7 @@ public class UsuarioServlet extends HttpServlet {
         try {
             final Usuario newUser = HttpServletRequestUtils.toUsuario(request);
             getUsuarioDomain().novoUsuario(newUser);
+            HttpServletRequestUtils.setUsuarioNaSessao(newUser, request);
         }
         catch (UsuarioJaExisteException e){
             LOGGER.info("O usuario ja existe");
@@ -43,14 +46,7 @@ public class UsuarioServlet extends HttpServlet {
             LOGGER.info("Tentativa de criacao de Usuario invalido: " + e.getMessage());
             HttpServletRequestUtils.adicionaErro("Usuario invalido (faltou login, email ou senha)", request);
         }
-        request.setAttribute("sucesso", "Usuário criado. Por favor efetue o login.");
-        new IndexServlet().doGet(request, response); //FEIO
-        //FEIO
-        //FEIOOOOO
-
-        //FEEEEEEIIIIIIIIIIIIIOOOOOOOOOO
-
-        //response.sendRedirect("index"); <-- não dá forward nos atrributos
+        response.sendRedirect("/piador/index");
     }
 
     UsuarioDomain getUsuarioDomain(){

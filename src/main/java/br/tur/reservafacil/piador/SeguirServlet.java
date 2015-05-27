@@ -5,6 +5,8 @@ import br.tur.reservafacil.piador.domain.SeguidorDomainImpl;
 import br.tur.reservafacil.piador.pio.Usuario;
 import br.tur.reservafacil.piador.pio.UsuarioRepositoryDefaultImpl;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +28,7 @@ public class SeguirServlet extends HttpServlet {
             final String usernameASeguir = request.getParameter("user");
             final Usuario usuarioEmSessao = usuario.get();
             getSeguidorDomain().seguir(usuarioEmSessao.getAuthentication().getUserName(), usernameASeguir);
-            new TimelineServlet().doGet(request, response);
+            response.sendRedirect("/piador/timeline");
         }
     }
 

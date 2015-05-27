@@ -6,6 +6,8 @@ import br.tur.reservafacil.piador.domain.exceptions.UsuarioNotFoundException;
 import br.tur.reservafacil.piador.pio.Usuario;
 import org.apache.log4j.Logger;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,14 +37,7 @@ public class LoginServlet extends HttpServlet {
             HttpServletRequestUtils.adicionaErro("Usuário não existe ou senha incorreta.", request);
             LOGGER.info("Usuario " + auth.getUserName() + " nao pode ser authenticado (não existe/senha errada)");
         }
-        //decide o que fazer em outro servlet
-        new IndexServlet().doGet(request, response); //FEIO
-        //FEIO
-        //FEIOOOOO
-
-        //FEEEEEEIIIIIIIIIIIIIOOOOOOOOOO
-
-        //response.sendRedirect("index"); <-- não dá forward nos atrributos
+        response.sendRedirect("/piador/index");
     }
 
     UsuarioDomain getUsuarioDomain(){

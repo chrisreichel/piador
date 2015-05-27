@@ -3,6 +3,8 @@ package br.tur.reservafacil.piador;
 import br.tur.reservafacil.piador.pio.Usuario;
 import org.apache.log4j.Logger;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +27,7 @@ public class IndexServlet extends HttpServlet{
         final Optional<Usuario> usuario = HttpServletRequestUtils.getUsuario(request);
         if (usuario.isPresent()) {
             LOGGER.debug("Welcome back: " + usuario.get().getAuthentication().getUserName());
-            new TimelineServlet().doGet(request, response);
+            response.sendRedirect("/piador/timeline");
         } else {
             request.getRequestDispatcher("notloged.jsp").include(request, response);
         }

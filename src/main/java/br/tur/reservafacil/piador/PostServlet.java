@@ -7,6 +7,8 @@ import br.tur.reservafacil.piador.pio.Usuario;
 import br.tur.reservafacil.piador.pio.UsuarioRepositoryDefaultImpl;
 import org.apache.log4j.Logger;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +31,7 @@ public class PostServlet extends HttpServlet {
         final Optional<Usuario> usuario = HttpServletRequestUtils.getUsuario(request);
         final Pio pio = new Pio(usuario.get().getAuthentication().getUserName(), (String) request.getParameter("conteudo"));
         getPostagemDomain().fazPostagem(pio);
-        new TimelineServlet().doGet(request, response);
+        response.sendRedirect("/piador/timeline");
     }
 
     UsuarioDomain getUsuarioDomain(){

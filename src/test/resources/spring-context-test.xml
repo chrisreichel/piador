@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-autowire="byType" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <!--
+
+       API: http://docs.spring.io/spring/docs/current/javadoc-api/
+
+       DOCS: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/
+classpath:
+       -->
+
+       <beans profile="test">
+              <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+                     <property name="location">
+                            <value>database-test.properties</value>
+                     </property>
+              </bean>
+       </beans>
+
+       <beans>
+              <import resource="/WEB-INF/applicationContext.xml"/>
+       </beans>
+
+</beans>

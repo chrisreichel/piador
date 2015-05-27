@@ -1,6 +1,6 @@
-<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
+<%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>Piador</title>

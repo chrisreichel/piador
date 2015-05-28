@@ -32,6 +32,7 @@ public class TimelineServlet extends HttpServlet {
 
         final WebApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
         final JdbcTemplate jdbcTemplate = (JdbcTemplate)ctx.getBean("jdbcTemplate");
+        final PostagemDomain postagemDomain = ctx.getBean(PostagemDomain.class);
 
         final Optional<Usuario> usuarioLogado = HttpServletRequestUtils.getUsuario(request);
         if (!usuarioLogado.isPresent()) {

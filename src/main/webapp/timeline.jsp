@@ -58,11 +58,11 @@
                 <div class="panel-footer">
                     <fmt:parseDate value="${pio.dataCriacao}" pattern="yyyy-MM-dd"
                                    var="parsedDate" type="date" />
-                    <div class="text-muted"><fmt:formatDate type="both"
-                                                                dateStyle="long" timeStyle="short" value="${parsedDate}" /></div>
+                    <div class="text-muted">
+                        <fmt:formatDate type="both" dateStyle="long" timeStyle="short" value="${parsedDate}" /></div>
                     <c:if test="${self == pio.username}">
                     <div class="pull-right">
-                        <button type="button" class="btn btn-danger btn-xs" onclick="alert('Nao funciona')">Remover</button>
+                        <button type="button" class="btn btn-danger btn-xs" onclick="alert('Nao funciona')">Delete</button>
                     </div>
                         <div class="clearfix"></div>
                     </c:if>

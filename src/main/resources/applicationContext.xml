@@ -44,7 +44,7 @@
             <property name="dataSource" ref="dataSource"/>
         </bean>
 
-        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" scope="singleton">
             <property name="dataSource" ref="dataSource"/>
         </bean>
 

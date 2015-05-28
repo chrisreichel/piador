@@ -6,11 +6,7 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
        <!--
-
-       API: http://docs.spring.io/spring/docs/current/javadoc-api/
-
-       DOCS: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/
-classpath:
+              poderia ser tb: <context:property-placeholder location="database-test.properties"/>
        -->
 
        <beans profile="test">
@@ -22,7 +18,7 @@ classpath:
        </beans>
 
        <beans>
-              <import resource="/WEB-INF/applicationContext.xml"/>
+              <import resource="classpath:applicationContext.xml"/>
        </beans>
 
 </beans>

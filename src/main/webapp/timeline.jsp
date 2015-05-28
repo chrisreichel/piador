@@ -10,13 +10,13 @@
     <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Nova postagem
+                New post
             </div>
             <div class="panel-body">
                 <form name="novoPostForm" method="post" action="novoPost">
                     <div class="form-group">
                         <textarea class="form-control" id="novoPost" name="conteudo" maxlength="140" ></textarea>
-                        <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Send</button>
                     </div>
                 </form>
             </div>
@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="col-md-4">
-        <h4>Meu perfil</h4>
+        <h4>My profile</h4>
         <div>
             <img src="http://www.linkirado.net/img_post/a0b1045b09f03dac4c1f86bd9e3b75ff.jpg" alt="Soy djo" class="img-circle">
         </div>
@@ -83,7 +83,7 @@
                     </a>
                 </div>
                 <p>
-                    <a href="seguir?user=<c:out value="${user.authentication.userName}"/>" class="btn btn-primary btn-sm">Seguir</a>
+                    <a href="seguir?user=<c:out value="${user.authentication.userName}"/>" class="btn btn-primary btn-sm">Follow</a>
                 </p>
                 <hr/>
                 </c:if>

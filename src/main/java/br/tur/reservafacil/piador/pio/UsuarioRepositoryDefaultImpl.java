@@ -1,39 +1,69 @@
 package br.tur.reservafacil.piador.pio;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
+
 import java.net.PasswordAuthentication;
 import java.util.*;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static java.util.stream.Collectors.toList;
 
+@Repository
 public class UsuarioRepositoryDefaultImpl implements UsuarioRepository {
 
     private static Map<String, List<String>> seguidoresRepos = new HashMap<>();
     private static Set<Usuario>              usuariosRepos   = new HashSet<>();
 
+    private JdbcTemplate jdbcTemplate;
+    private SimpleJdbcInsert seguirInsertHandler;
+
     public UsuarioRepositoryDefaultImpl() {}
+
+    @Autowired
+    public UsuarioRepositoryDefaultImpl(JdbcTemplate jdbcTemplate) {
+	this.jdbcTemplate = jdbcTemplate;
+	seguirInsertHandler = new SimpleJdbcInsert(jdbcTemplate).withTableName("seguidores").usingGeneratedKeyColumns("id");
+    }
 
     @Override
     public void addSeguidor(String username, String seguidor) {
-	if (!seguidoresRepos.containsKey(username)) {
-	    seguidoresRepos.put(username, new ArrayList<>());
+	final Optional<Usuario> usuario = findUsuarioByLogin(username);
+	final Optional<Usuario> quemSeraSeguido = findUsuarioByLogin(seguidor);
+	if(usuario.isPresent() && quemSeraSeguido.isPresent()){
+	    final SqlParameterSource namedParameters = new MapSqlParameterSource("usuario_id", usuario.get().getId())
+			    .addValue("seguidor_id", quemSeraSeguido.get().getId());
+	    seguirInsertHandler.execute(namedParameters);
 	}
-	seguidoresRepos.get(username).add(seguidor);
+	else {
+	    throw new IllegalArgumentException("Nao foi possivel establelecer uma recacao entre: " + username + " e " + seguidor);
+	}
     }
 
     @Override
     public List<String> findSeguidoresByUsername(String username) {
-	final List<String> quemUserSegue = seguidoresRepos.get(username);
-        return (quemUserSegue != null) ? quemUserSegue : Collections.emptyList();
+	final String sql = "";
     }
 
     @Override
     public void insert(Usuario usuario) {
 	checkNotNull(usuario);
-        if(usuariosRepos.contains(usuario)){
-	    throw new IllegalArgumentException("Usuario ja existe");
-        }
-	usuariosRepos.add(usuario);
+
+	SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
+			.withTableName("usuario")
+			.usingGeneratedKeyColumns("id");
+
+	final SqlParameterSource namedParameters = new MapSqlParameterSource("nome", usuario.getNome())
+			.addValue("sobrenome", usuario.getSobrenome())
+			.addValue("email", usuario.getEmail())
+			.addValue("username", usuario.getAuthentication().getUserName())
+			.addValue("password", new String((usuario.getAuthentication().getPassword())));
+
+	usuario.setId(simpleJdbcInsert.executeAndReturnKey(namedParameters).intValue());
     }
 
     @Override public void update(Usuario usuario) {
@@ -46,57 +76,24 @@ public class UsuarioRepositoryDefaultImpl implements UsuarioRepository {
 
     @Override
     public Optional<Usuario> findUsuarioByPasswordAuthentication(PasswordAuthentication passwordAuthentication) {
-	return usuariosRepos.stream()
-			.filter(user -> comparePasswordAuthentication(user.getAuthentication(), passwordAuthentication))
-			.findFirst();
+	String[] args = {passwordAuthentication.getUserName(), new String(passwordAuthentication.getPassword())};
+	final Usuario usuario =
+			jdbcTemplate.queryForObject("select * from usuario where username = ? and password = ?", args,
+						    new UsuarioRowMapper());
+
+	return Optional.ofNullable(usuario);
     }
 
     @Override public Optional<Usuario> findUsuarioByLogin(String userName) {
-        return usuariosRepos.stream()
-                        .filter(user -> (user.getAuthentication().getUserName().equalsIgnoreCase(userName))).findFirst();
+	final Usuario usuario =
+			jdbcTemplate.queryForObject("select * from usuario where username = ?",
+						    new UsuarioRowMapper(), userName);
+
+	return Optional.ofNullable(usuario);
     }
 
     @Override public Collection<Usuario> findAllUsuarios() {
-        return usuariosRepos;
-    }
-
-    private boolean comparePasswordAuthentication(PasswordAuthentication authA, PasswordAuthentication authB) {
-	if (authA.getPassword() == null || authB.getPassword() == null) {
-	    return false;
-	}
-
-	if (authA.getUserName() == null || authB.getUserName() == null) {
-	    return false;
-	}
-	return authA.getUserName().equals(authB.getUserName()) && Arrays.equals(authA.getPassword(), authB.getPassword());
-    }
-
-    public void initUsuarios() {
-	usuariosPadrao().stream()
-			.map(this::createUsuario)
-			.forEach(this::insert);
-    }
-
-    private Usuario createUsuario(String user) {
-        final String template = user.replace("@", "");
-	PasswordAuthentication passwordAuthentication = new PasswordAuthentication(template, "123".toCharArray());
-	Usuario u = new Usuario(passwordAuthentication, new ArrayList<>(), new ArrayList<>());
-        u.setEmail(template + "@gmail.com");
-        u.setNome(template.split("[.]")[0]);
-        u.setSobrenome(template.split("[.]")[1]);
-        return u;
-    }
-
-    public void initSeguidores() {
-	usuariosPadrao().stream()
-			.forEach(user -> {
-			    seguidoresRepos.put(user, usuariosPadrao().stream()
-			    					.filter(seg -> !seg.equals(user))
-								.collect(toList()));
-			});
-    }
-
-    public List<String> usuariosPadrao() {
-	return Arrays.asList("camilla.navarro", "paula.dias", "danielle.miranda", "aline.gallo");
+        final String sql = "select * from usuario";
+	return jdbcTemplate.query(sql, new UsuarioRowMapper());
     }
 }

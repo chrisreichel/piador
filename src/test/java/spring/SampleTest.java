@@ -153,9 +153,7 @@ public class SampleTest {
         valores.add(new Teste(2, "VALOR_2"));
         //When
         final SqlParameterSource[] batch = SqlParameterSourceUtils.createBatch(valores.toArray());
-        final int[] updateCounts = namedParameterJdbcTemplate.batchUpdate(
-                        "update teste set name = :name where id = :id",
-                        batch);
+        final int[] updateCounts = namedParameterJdbcTemplate.batchUpdate("update teste set name = :name where id = :id", batch);
         //Then
         final List<Teste> testeList = jdbcTemplate.query("select * from teste", new TesteMapper());
         assertEquals(2, updateCounts.length);
@@ -192,6 +190,16 @@ public class SampleTest {
     }
 
     @Test
+    public void testeDeUpdate2() throws Exception{
+	//Given
+	final String sql = "update teste set name = 'hola!' where id is not null";
+	//When
+	final int totalDeLinhasAfetadas = jdbcTemplate.update(sql);//retorna o número de linahs afetadas
+	//Then
+	assertEquals(2, totalDeLinhasAfetadas);
+    }
+
+    @Test
     public void testeDeDelete() throws Exception{
         //Given
         final String sql = "delete from teste where id > 0";
@@ -205,7 +213,7 @@ public class SampleTest {
 
     @Before
     public void setUp() throws Exception{
-	jdbcTemplate.execute("drop table teste");
+	jdbcTemplate.execute("drop table if exists teste");
 	jdbcTemplate.execute("create table teste(id bigint auto_increment, name varchar(255))");
 	jdbcTemplate.execute("insert into teste(name) values('hello')");
 	jdbcTemplate.execute("insert into teste(name) values('world')");

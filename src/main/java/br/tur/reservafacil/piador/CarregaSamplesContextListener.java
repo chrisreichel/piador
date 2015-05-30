@@ -1,8 +1,5 @@
 package br.tur.reservafacil.piador;
 
-import br.tur.reservafacil.piador.pio.PioRepositoryDefaultImpl;
-import br.tur.reservafacil.piador.pio.UsuarioRepositoryDefaultImpl;
-
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -15,11 +12,13 @@ import javax.servlet.annotation.WebListener;
 public class CarregaSamplesContextListener implements ServletContextListener {
 
     @Override public void contextInitialized(ServletContextEvent servletContextEvent) {
+	/*
+
         final UsuarioRepositoryDefaultImpl userRepo = new UsuarioRepositoryDefaultImpl();
         userRepo.initSeguidores();
         userRepo.initUsuarios();
         final PioRepositoryDefaultImpl pioRepo = new PioRepositoryDefaultImpl();
-        pioRepo.initRepos();
+        pioRepo.initRepos();*/
     }
 
     @Override public void contextDestroyed(ServletContextEvent servletContextEvent) {

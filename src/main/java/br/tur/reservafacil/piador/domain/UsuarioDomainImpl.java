@@ -8,6 +8,8 @@ import br.tur.reservafacil.piador.domain.exceptions.UsuarioNotFoundException;
 import br.tur.reservafacil.piador.pio.Usuario;
 import br.tur.reservafacil.piador.pio.UsuarioRepository;
 import br.tur.reservafacil.piador.pio.UsuarioRepositoryDefaultImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.net.PasswordAuthentication;
 import java.util.Collection;
@@ -18,6 +20,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * @author eduardobregaida
  */
+@Service
 public class UsuarioDomainImpl implements UsuarioDomain {
 
     private final UsuarioRepository usuarioRepository;
@@ -26,6 +29,7 @@ public class UsuarioDomainImpl implements UsuarioDomain {
         usuarioRepository =  new UsuarioRepositoryDefaultImpl();
     }
 
+    @Autowired
     public UsuarioDomainImpl(UsuarioRepository usuarioRepository) {
 	this.usuarioRepository = usuarioRepository;
     }

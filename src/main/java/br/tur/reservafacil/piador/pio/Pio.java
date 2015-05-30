@@ -8,6 +8,7 @@ public class Pio {
     private String    username;
     private LocalDateTime dataCriacao;
 
+    public Pio(){}
     public Pio(String username, String conteudo) {
 	super();
 	this.username = username;

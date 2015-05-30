@@ -1,17 +1,21 @@
 package br.tur.reservafacil.piador.domain;
 
 import br.tur.reservafacil.piador.pio.Pio;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+@Service
 public class TimelineService {
 
     private PostagemDomain postagemDomain;
     private SeguidorDomain seguidorDomain;
 
+    @Autowired
     public TimelineService(PostagemDomain postagemDomain, SeguidorDomain seguidorDomain) {
         this.postagemDomain = postagemDomain;
         this.seguidorDomain = seguidorDomain;

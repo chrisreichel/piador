@@ -1,25 +1,47 @@
 package br.tur.reservafacil.piador.pio;
 
-import java.util.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
+import java.util.List;
+
+@Repository
 public class PioRepositoryDefaultImpl implements PioRepository {
 
-    private final static Map<String, List<Pio>> repos = new HashMap<>();
+    @Autowired private JdbcTemplate jdbcTemplate;
 
     public PioRepositoryDefaultImpl() {
     }
 
     @Override
     public void save(Pio pio) {
-	if (!repos.containsKey(pio.getUsername())) {
-	    repos.put(pio.getUsername(), new ArrayList<>());
-	}
-	repos.get(pio.getUsername()).add(pio);
+
+	SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
+			.withTableName("pio");
+
+	//FIXME arrumar timestamp
+	pio.setDataCriacao(null);
+	final SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(pio);
+	simpleJdbcInsert.execute(namedParameters);
+
     }
 
     @Override
     public List<Pio> findByUsername(String username) {
-	return repos.get(username);
+
+	final SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(new Pio(username,""));
+
+	NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+
+	String sql = "select * from pio where username =:username";
+	return namedParameterJdbcTemplate.query(sql, namedParameters, new BeanPropertyRowMapper<Pio>(Pio.class));
     }
 
     public void initRepos() {

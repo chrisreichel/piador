@@ -1,21 +1,12 @@
 package br.tur.reservafacil.piador;
 
-import br.tur.reservafacil.piador.domain.*;
+import br.tur.reservafacil.piador.domain.TimelineService;
 import br.tur.reservafacil.piador.pio.Pio;
-import br.tur.reservafacil.piador.pio.PioRepositoryDefaultImpl;
 import br.tur.reservafacil.piador.pio.Usuario;
-import br.tur.reservafacil.piador.pio.UsuarioRepositoryDefaultImpl;
 import org.apache.log4j.Logger;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -23,16 +14,12 @@ import java.util.List;
 import java.util.Optional;
 
 @WebServlet("/timeline")
-public class TimelineServlet extends HttpServlet {
+public class TimelineServlet extends BaseServlet {
 
     private static final Logger LOGGER = Logger.getLogger(TimelineServlet.class);
 
     @Override protected void doGet(HttpServletRequest request, HttpServletResponse response)
                     throws ServletException, IOException {
-
-        final WebApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
-        final JdbcTemplate jdbcTemplate = (JdbcTemplate)ctx.getBean("jdbcTemplate");
-        final PostagemDomain postagemDomain = ctx.getBean(PostagemDomain.class);
 
         final Optional<Usuario> usuarioLogado = HttpServletRequestUtils.getUsuario(request);
         if (!usuarioLogado.isPresent()) {
@@ -57,21 +44,5 @@ public class TimelineServlet extends HttpServlet {
             return username;
         }
         return usuario.getAuthentication().getUserName();
-    }
-
-    UsuarioDomain getUsuarioDomain(){
-        return new UsuarioDomainImpl();
-    }
-
-    PostagemDomain getPostagemDomain(){
-        return new PostagemDomainImpl(new PioRepositoryDefaultImpl());
-    }
-
-    SeguidorDomain getSeguidorDomain(){
-        return new SeguidorDomainImpl(new UsuarioRepositoryDefaultImpl());
-    }
-
-    TimelineService getTimelineService(){
-        return new TimelineService(getPostagemDomain(), getSeguidorDomain());
     }
 }

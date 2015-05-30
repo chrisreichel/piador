@@ -1,15 +1,9 @@
 package br.tur.reservafacil.piador;
 
-import br.tur.reservafacil.piador.domain.SeguidorDomain;
-import br.tur.reservafacil.piador.domain.SeguidorDomainImpl;
 import br.tur.reservafacil.piador.pio.Usuario;
-import br.tur.reservafacil.piador.pio.UsuarioRepositoryDefaultImpl;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -19,7 +13,7 @@ import java.util.Optional;
  * Created by christian on 14/05/15.
  */
 @WebServlet("/seguir")
-public class SeguirServlet extends HttpServlet {
+public class SeguirServlet extends BaseServlet {
 
     @Override protected void doGet(HttpServletRequest request, HttpServletResponse response)
 		    throws ServletException, IOException {
@@ -30,9 +24,5 @@ public class SeguirServlet extends HttpServlet {
             getSeguidorDomain().seguir(usuarioEmSessao.getAuthentication().getUserName(), usernameASeguir);
             response.sendRedirect("/piador/timeline");
         }
-    }
-
-    SeguidorDomain getSeguidorDomain(){
-        return new SeguidorDomainImpl(new UsuarioRepositoryDefaultImpl());
     }
 }

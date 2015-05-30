@@ -7,21 +7,22 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Usuario {
 
+    private int                    id;
+
     private PasswordAuthentication authentication;
     private List<Pio>              pios;
     private List<Usuario>          followers;
     private String                 nome;
     private String                 sobrenome;
     private String                 email;
-
     public Usuario(String login, String senha) {
-        checkNotNull(login);
-        checkNotNull(senha);
-        this.authentication = new PasswordAuthentication(login.replace("@",""), senha.toCharArray());
+	checkNotNull(login);
+	checkNotNull(senha);
+	this.authentication = new PasswordAuthentication(login.replace("@", ""), senha.toCharArray());
     }
 
     public Usuario(String login, String senha, String email) {
-        checkNotNull(login);
+	checkNotNull(login);
         checkNotNull(senha);
         checkNotNull(email);
         this.authentication = new PasswordAuthentication(login.replace("@",""), senha.toCharArray());
@@ -60,6 +61,14 @@ public class Usuario {
 
     public void setFollowers(List<Usuario> followers) {
         this.followers = followers;
+    }
+
+    public int getId() {
+	return id;
+    }
+
+    public void setId(int id) {
+	this.id = id;
     }
 
     public String getNome() {
